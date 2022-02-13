@@ -94,70 +94,44 @@
                     <div class="card-header pb-0">
                         <div class="row">
                             <div class="col-lg-6 col-7">
-                                <h6>Liste des utilisateurs</h6>
-
-                                <a href="{{route('users.create')}}" class="btn bg-gradient-dark  my-2 mb-1">Ajouter</a>
-
-
-                            </div>
-                            <div class="col-lg-6 col-5 my-auto text-end">
-                                <div class="dropdown float-lg-end pe-4">
-                                    <a class="cursor-pointer" id="dropdownTable" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa fa-ellipsis-v text-secondary"></i>
-                                    </a>
-                                    <ul class="dropdown-menu px-2 py-3 ms-sm-n4 ms-n5" aria-labelledby="dropdownTable">
-                                        <li><a class="dropdown-item border-radius-md" href="javascript:;">Action</a></li>
-                                        <li><a class="dropdown-item border-radius-md" href="javascript:;">Another action</a></li>
-                                        <li><a class="dropdown-item border-radius-md" href="javascript:;">Something else here</a></li>
-                                    </ul>
-                                </div>
+                                <h6>Ajouter un produit</h6>
                             </div>
                         </div>
-                    </div>
-                    <div class="card-body px-0 pb-2">
-                        <div class="table-responsive">
-                            <table class="table mb-0">
-                                <thead>
-                                <tr>
-                                    <th >Nom</th>
-                                    <th >Email</th>
-                                    <th >Role</th>
-                                    <th >Date de création</th>
-                                    <th >Actions</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($users as $user)
-                                <tr>
-                                    <td>
-                                     <strong >{{$user->name}}</strong>
+                        <div class="card-body px-0 pb-2">
+                            <form action="{{route('produits.store')}}" method="post" enctype="multipart/form-data">
+                                @csrf
+                                <div class="form-group">
+                                    <label >Nom de produit </label>
+                                    <input type="text" class="form-control"  placeholder="Nom" name="name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label >Catégorie</label>
+                                    <select  class="form-control" name="categorie">
+                                        @foreach($categories as $categorie)
+                                            <option value="{{$categorie->id}}">{{$categorie->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label >Qunatité </label>
+                                    <input type="number" class="form-control" name="quantity"   placeholder="Quantité">
+                                </div>
+                                <div class="form-group">
+                                    <label >Référence </label>
+                                    <input type="text" class="form-control" name="reference"   placeholder="Référence" required>
+                                </div>
 
-                                    </td>
-                                    <td>
-                                       <strong>{{$user->email}}</strong>
-                                    </td>
-                                    <td >
-                                        <strong>{{$user->role}}</strong>
-                                    </td>
-                                    <td >
-                                        <strong>{{date('Y-m-d',strtotime($user->created_at))}}</strong>
-                                    </td>
-                                    <td >
-                                    <a class="btn btn-primary" href="#"><i class="fa fa-edit"></i>
-                                    </a>
-                                        <a class="btn btn-danger " href="#"><i class="fa fa-trash"></i>
-                                        </a>
+                                <div class="form-group">
+                                    <label >Prix</label>
+                                    <input type="number" class="form-control" name="price"  placeholder="Prix">
+                                </div>
 
-                                    </td>
-                                </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
         </div>
 
 @endsection

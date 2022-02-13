@@ -1,30 +1,9 @@
-@extends('layouts.app2')
+@extends('layouts.app3')
 
 @section('content')
     <div class="container-fluid py-4">
         <div class="row">
-            <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                <div class="card">
-                    <div class="card-body p-3">
-                        <div class="row">
-                            <div class="col-8">
-                                <div class="numbers">
-                                    <p class="text-sm mb-0 text-capitalize font-weight-bold">Utilisateurs</p>
-                                    <h5 class="font-weight-bolder mb-0">
-                                        <span class="text-success text-sm font-weight-bolder">{{$users->count()}}</span>
-                                    </h5>
-                                </div>
-                            </div>
-                            <div class="col-4 text-end">
-                                <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
-                                    <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
                 <div class="card">
                     <div class="card-body p-3">
                         <div class="row">
@@ -45,7 +24,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
                 <div class="card">
                     <div class="card-body p-3">
                         <div class="row">
@@ -66,7 +45,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-sm-6">
+            <div class="col-xl-4 col-sm-6">
                 <div class="card">
                     <div class="card-body p-3">
                         <div class="row">
@@ -74,7 +53,7 @@
                                 <div class="numbers">
                                     <p class="text-sm mb-0 text-capitalize font-weight-bold">Commandes</p>
                                     <h5 class="font-weight-bolder mb-0">
-                                        <span class="text-success text-sm font-weight-bolder">{{$commandes->count()}}</span>
+                                        <span class="text-success text-sm font-weight-bolder">{{$mcommandes->count()}}</span>
                                     </h5>
                                 </div>
                             </div>
@@ -94,11 +73,11 @@
                     <div class="card-header pb-0">
                         <div class="row">
                             <div class="col-lg-6 col-7">
-                                <h6>Liste des utilisateurs</h6>
-
-                                <a href="{{route('users.create')}}" class="btn bg-gradient-dark  my-2 mb-1">Ajouter</a>
-
-
+                                <h6>Mes commandes</h6>
+                                {{--}}<p class="text-sm mb-0">
+                                    <i class="fa fa-check text-info" aria-hidden="true"></i>
+                                    <span class="font-weight-bold ms-1">30 done</span> this month
+                                </p>{{--}}
                             </div>
                             <div class="col-lg-6 col-5 my-auto text-end">
                                 <div class="dropdown float-lg-end pe-4">
@@ -119,35 +98,31 @@
                             <table class="table mb-0">
                                 <thead>
                                 <tr>
-                                    <th >Nom</th>
-                                    <th >Email</th>
-                                    <th >Role</th>
+                                    <th >Client</th>
+                                    <th >Produit</th>
+                                    <th >Quantité</th>
+                                    <th >Prix</th>
                                     <th >Date de création</th>
-                                    <th >Actions</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($users as $user)
+                                @foreach($mcommandes as $mcommande)
                                 <tr>
                                     <td>
-                                     <strong >{{$user->name}}</strong>
+                                     <strong >{{$mcommande->user_id}}</strong>
 
                                     </td>
                                     <td>
-                                       <strong>{{$user->email}}</strong>
+                                       <strong>{{$mcommande->produit_id}}</strong>
                                     </td>
                                     <td >
-                                        <strong>{{$user->role}}</strong>
+                                        <strong>{{$mcommande->quantity}}</strong>
                                     </td>
                                     <td >
-                                        <strong>{{date('Y-m-d',strtotime($user->created_at))}}</strong>
+                                        <strong>{{$mcommande->total_price}}</strong>
                                     </td>
                                     <td >
-                                    <a class="btn btn-primary" href="#"><i class="fa fa-edit"></i>
-                                    </a>
-                                        <a class="btn btn-danger " href="#"><i class="fa fa-trash"></i>
-                                        </a>
-
+                                        <strong>{{date('Y-m-d',strtotime($mcommande->created_at))}}</strong>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -159,5 +134,4 @@
             </div>
         </div>
         </div>
-
 @endsection

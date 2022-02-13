@@ -43,4 +43,14 @@ class UserController extends Controller
         return redirect()->route('users');
 
     }
+    public function edit($id){
+        $user=User::find($id);
+        $users=User::all();
+        $commandes=Commande::all();
+        $categories=Categorie::all();
+        $products=Produit::all();
+        return view('users.edit',compact('user','users','categories','commandes','products'));
+
+
+    }
 }
