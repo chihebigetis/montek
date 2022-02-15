@@ -125,7 +125,10 @@
                                 <label >Prix</label>
                                 <input type="number" class="form-control" name="price"  placeholder="Prix">
                             </div>
-
+                            <div class="form-group">
+                                <label >photo</label>
+                                <input type="file" class="form-control" name="photo"  >
+                            </div>
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
                     </div>

@@ -120,8 +120,8 @@
                                 <thead>
                                 <tr>
                                     <th >Nom</th>
-                                    <th ></th>
                                     <th >Date de création</th>
+                                    <th >Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -130,10 +130,13 @@
                                     <td>
                                      <strong >{{$categorie->name}}</strong>
                                     </td>
-                                    <td >
-                                    </td>
+
                                     <td >
                                         <strong>{{date('Y-m-d',strtotime($categorie->created_at))}}</strong>
+                                    </td>
+                                    <td >
+                                        <a href="{{route('categories.edit', $categorie->id)}}" class="btn btn-primary " ><i class="fa fa-edit"></i>
+                                        </a>
                                     </td>
                                 </tr>
                                 @endforeach

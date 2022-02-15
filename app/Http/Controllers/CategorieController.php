@@ -32,4 +32,20 @@ class CategorieController extends Controller
         $categorie->save();
         return redirect()->route('categories');
     }
+    public function edit($id)
+    {
+        $categorie=Categorie::find($id);
+        $users=User::all();
+        $commandes=Commande::all();
+        $categories=Categorie::all();
+        $products=Produit::all();
+        return view('categories.edit',compact('categorie','users','categories','commandes','products'));
+    }
+    public function update(Request $request){
+        //dd($request->all());
+        $categorie=Categorie::find($request->categorie_id);
+        $categorie->name=$request->name;
+        $categorie->save();
+        return redirect()->route('categories');
+    }
 }

@@ -101,7 +101,9 @@
                                     <th >Client</th>
                                     <th >Produit</th>
                                     <th >Quantité</th>
-                                    <th >Prix</th>
+                                    <th >Prix total</th>
+                                    <th >Adresse</th>
+                                    <th >Téléphone</th>
                                     <th >Date de création</th>
                                 </tr>
                                 </thead>
@@ -109,17 +111,23 @@
                                 @foreach($mcommandes as $mcommande)
                                 <tr>
                                     <td>
-                                     <strong >{{$mcommande->user_id}}</strong>
+                                     <strong >{{$mcommande->client()->name}}</strong>
 
                                     </td>
                                     <td>
-                                       <strong>{{$mcommande->produit_id}}</strong>
+                                       <strong>{{$mcommande->produit()->name}}</strong>
                                     </td>
                                     <td >
                                         <strong>{{$mcommande->quantity}}</strong>
                                     </td>
                                     <td >
                                         <strong>{{$mcommande->total_price}}</strong>
+                                    </td>
+                                    <td >
+                                        <strong>{{$mcommande->adresse}}</strong>
+                                    </td>
+                                    <td >
+                                        <strong>{{$mcommande->num_tel}}</strong>
                                     </td>
                                     <td >
                                         <strong>{{date('Y-m-d',strtotime($mcommande->created_at))}}</strong>

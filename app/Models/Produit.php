@@ -17,6 +17,7 @@ class Produit extends Model
         'reference',
         'image',
 
+
     ];
     protected $dates = [
         'created_at',

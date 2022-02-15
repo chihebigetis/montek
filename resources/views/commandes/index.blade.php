@@ -94,11 +94,7 @@
                     <div class="card-header pb-0">
                         <div class="row">
                             <div class="col-lg-6 col-7">
-                                <h6>Liste des produits</h6>
-
-                                <a href="{{route('produits.create')}}" class="btn bg-gradient-dark  my-2 mb-1">Ajouter</a>
-
-
+                                <h6>Liste des commandes</h6>
                             </div>
                             <div class="col-lg-6 col-5 my-auto text-end">
                                 <div class="dropdown float-lg-end pe-4">
@@ -119,47 +115,51 @@
                             <table class="table mb-0">
                                 <thead>
                                 <tr>
-                                    <th >Nom</th>
-                                    <th >Catégorie</th>
+                                    <th >Client</th>
+                                    <th >Produit</th>
                                     <th >Quantité</th>
-                                    <th >Référence</th>
-                                    <th >Prix</th>
+                                    <th >Prix total</th>
+                                    <th >Adresse</th>
+                                    <th >Téléphone</th>
                                     <th >Date de création</th>
                                     <th >Actions</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($products as $product)
-                                <tr>
-                                    <td>
-                                     <strong >{{$product->name}}</strong>
-                                    </td>
+                                @foreach($commandes as $commande)
+                                    <tr>
+                                        <td>
+                                            <strong >{{$commande->client()->name}}</strong>
+                                        </td>
 
-                                    <td>
-                                       <strong>{{$product->categorie()->name}}</strong>
-                                    </td>
-                                    <td >
-                                        <strong>{{$product->quantity}}</strong>
-                                    </td>
-                                    <td >
-                                        <strong>{{$product->reference}}</strong>
-                                    </td>
-                                    <td >
-                                        <strong>{{$product->price}}</strong>
-                                    </td>
-                                    <td >
-                                        <strong>{{date('Y-m-d',strtotime($product->created_at))}}</strong>
-                                    </td>
-                                    <td>
-                                        <a href="{{route('produits.edit', $product->id)}}" class="btn btn-primary " ><i class="fa fa-edit"></i>
-                                        </a>
-                                        <form method="post" action="{{route('produits.destroy')}}">
-                                            @csrf
-                                            <input type="hidden" value="{{$product->id}}" name="produit_id">
-                                            <button type="submit" class="btn  btn-danger"><i class="fa fa-trash"></i></button>
-                                        </form>
-                                    </td>
-                                </tr>
+                                        <td>
+                                            <strong>{{$commande->produit()->name}}</strong>
+                                        </td>
+                                        <td >
+                                            <strong>{{$commande->quantity}}</strong>
+                                        </td>
+                                        <td >
+                                            <strong>{{$commande->total_price}}</strong>
+                                        </td>
+                                        <td >
+                                            <strong>{{$commande->adresse}}</strong>
+                                        </td>
+                                        <td >
+                                            <strong>{{$commande->num_tel}}</strong>
+                                        </td>
+                                        <td >
+                                            <strong>{{date('Y-m-d',strtotime($commande->created_at))}}</strong>
+                                        </td>
+                                        <td>
+                                            <a href="#" class="btn btn-primary " ><i class="fa fa-edit"></i>
+                                            </a>
+                                           {{--}} <form method="post" action="#">
+                                                @csrf
+                                                <input type="hidden" value="{{$commande->id}}" name="produit_id">
+                                                <button type="submit" class="btn  btn-danger"><i class="fa fa-trash"></i></button>
+                                            </form>{{--}}
+                                        </td>
+                                    </tr>
                                 @endforeach
                                 </tbody>
                             </table>
@@ -168,6 +168,6 @@
                 </div>
             </div>
         </div>
-        </div>
+    </div>
 
 @endsection

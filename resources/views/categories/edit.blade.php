@@ -94,76 +94,20 @@
                     <div class="card-header pb-0">
                         <div class="row">
                             <div class="col-lg-6 col-7">
-                                <h6>Liste des produits</h6>
-
-                                <a href="{{route('produits.create')}}" class="btn bg-gradient-dark  my-2 mb-1">Ajouter</a>
-
-
-                            </div>
-                            <div class="col-lg-6 col-5 my-auto text-end">
-                                <div class="dropdown float-lg-end pe-4">
-                                    <a class="cursor-pointer" id="dropdownTable" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa fa-ellipsis-v text-secondary"></i>
-                                    </a>
-                                    <ul class="dropdown-menu px-2 py-3 ms-sm-n4 ms-n5" aria-labelledby="dropdownTable">
-                                        <li><a class="dropdown-item border-radius-md" href="javascript:;">Action</a></li>
-                                        <li><a class="dropdown-item border-radius-md" href="javascript:;">Another action</a></li>
-                                        <li><a class="dropdown-item border-radius-md" href="javascript:;">Something else here</a></li>
-                                    </ul>
-                                </div>
-                            </div>
+                                <h6>Modifier la catégorie {{$categorie->name}}</h6>
                         </div>
                     </div>
                     <div class="card-body px-0 pb-2">
-                        <div class="table-responsive">
-                            <table class="table mb-0">
-                                <thead>
-                                <tr>
-                                    <th >Nom</th>
-                                    <th >Catégorie</th>
-                                    <th >Quantité</th>
-                                    <th >Référence</th>
-                                    <th >Prix</th>
-                                    <th >Date de création</th>
-                                    <th >Actions</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($products as $product)
-                                <tr>
-                                    <td>
-                                     <strong >{{$product->name}}</strong>
-                                    </td>
+                        <form action="{{route('categories.update')}}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <div class="form-group">
+                                <label >Nom </label>
+                                <input type="text" class="form-control"  value="{{$categorie->name}}" name="name" required>
+                            </div>
+                            <input type="hidden"  value="{{$categorie->id}}" name="categorie_id" >
 
-                                    <td>
-                                       <strong>{{$product->categorie()->name}}</strong>
-                                    </td>
-                                    <td >
-                                        <strong>{{$product->quantity}}</strong>
-                                    </td>
-                                    <td >
-                                        <strong>{{$product->reference}}</strong>
-                                    </td>
-                                    <td >
-                                        <strong>{{$product->price}}</strong>
-                                    </td>
-                                    <td >
-                                        <strong>{{date('Y-m-d',strtotime($product->created_at))}}</strong>
-                                    </td>
-                                    <td>
-                                        <a href="{{route('produits.edit', $product->id)}}" class="btn btn-primary " ><i class="fa fa-edit"></i>
-                                        </a>
-                                        <form method="post" action="{{route('produits.destroy')}}">
-                                            @csrf
-                                            <input type="hidden" value="{{$product->id}}" name="produit_id">
-                                            <button type="submit" class="btn  btn-danger"><i class="fa fa-trash"></i></button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+                            <button type="submit" class="btn btn-primary">Modifier</button>
+                        </form>
                     </div>
                 </div>
             </div>

@@ -123,7 +123,7 @@
                                     <th >Email</th>
                                     <th >Role</th>
                                     <th >Date de création</th>
-                                    <th >Actions</th>
+                                    <th>Actions</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -142,11 +142,14 @@
                                     <td >
                                         <strong>{{date('Y-m-d',strtotime($user->created_at))}}</strong>
                                     </td>
-                                    <td >
-                                    <a class="btn btn-primary" href="#"><i class="fa fa-edit"></i>
+                                    <td style="width: 250px;" >
+                                    <a href="{{route('users.edit', $user->id)}}" class="btn btn-primary " ><i class="fa fa-edit"></i>
                                     </a>
-                                        <a class="btn btn-danger " href="#"><i class="fa fa-trash"></i>
-                                        </a>
+                                        <form method="post" action="{{route('users.destroy')}}">
+                                            @csrf
+                                            <input type="hidden" value="{{$user->id}}" name="user_id">
+                                            <button type="submit" class="btn  btn-danger"><i class="fa fa-trash"></i></button>
+                                        </form>
 
                                     </td>
                                 </tr>
