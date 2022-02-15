@@ -27,6 +27,9 @@ class HomeController extends Controller
         $produits=Produit::all();
         return view('home',compact('produits'));
     }
+    public function a_propos(){
+        return view('a_propos');
+    }
     public function dashboard()
     {
         $user = auth()->user();

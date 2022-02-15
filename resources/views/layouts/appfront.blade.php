@@ -45,11 +45,11 @@
                     </button>
                     <div class="col-lg-8 mb-4 mx-auto text-center">
 
-                        <a href="#"  class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+                        <a href="{{route('a_propos')}}"  class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
                             À propos de nous
                         </a>
 
-                        <a href="#"  class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+                        <a href="{{route('welcome')}}"  class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
                             Produits
                         </a>
 
